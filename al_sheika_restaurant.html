@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Al Sheika Banana Leaf Restaurant</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --green: #2d6a1f;
+    --green-light: #4a8f30;
+    --green-pale: #eaf5e3;
+    --gold: #c8860a;
+    --gold-light: #f5c842;
+    --gold-pale: #fdf6e3;
+    --cream: #fdf8f0;
+    --dark: #1a1209;
+    --text: #3a2c12;
+    --muted: #7a6040;
+    --border: rgba(58,44,18,0.15);
+    --white: #ffffff;
+    --red: #c0392b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--white);
+    border-bottom: 2px solid var(--green);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .header-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.6rem 1.5rem;
+    gap: 1rem;
+  }
+  .logo-area { display: flex; align-items: center; gap: 0.75rem; }
+  .logo-img {
+    height: 58px; width: auto; object-fit: contain;
+  }
+  .brand-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--green); line-height: 1.2;
+  }
+  .brand-text p {
+    font-size: 0.72rem; color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  nav { display: flex; gap: 0.25rem; flex-wrap: wrap; }
+  nav a {
+    font-size: 0.82rem; font-weight: 500;
+    color: var(--text); text-decoration: none;
+    padding: 0.4rem 0.75rem; border-radius: 20px;
+    transition: background 0.2s, color 0.2s;
+  }
+  nav a:hover { background: var(--green-pale); color: var(--green); }
+  nav a.active { background: var(--green); color: #fff; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--green) 0%, #1a4012 50%, #0d2608 100%);
+    color: white;
+    text-align: center;
+    padding: 3.5rem 1.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(245,200,66,0.2);
+    border: 1px solid rgba(245,200,66,0.5);
+    color: var(--gold-light);
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.35rem 1rem; border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+  .hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700; line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+  .hero h2 span { color: var(--gold-light); }
+  .hero p { font-size: 1rem; opacity: 0.82; max-width: 500px; margin: 0 auto 1.5rem; }
+  .hero-btns { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: white;
+    font-weight: 600; font-size: 0.9rem;
+    padding: 0.7rem 1.5rem; border-radius: 8px;
+    border: none; cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #a36e07; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: white;
+    font-weight: 500; font-size: 0.9rem;
+    padding: 0.7rem 1.5rem; border-radius: 8px;
+    border: 1.5px solid rgba(255,255,255,0.5); cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: background 0.2s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+  /* ── SECTION ── */
+  section { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 700;
+    color: var(--green); margin-bottom: 0.35rem;
+  }
+  .section-sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.75rem; }
+
+  /* ── TABS ── */
+  .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.75rem; flex-wrap: wrap; }
+  .tab {
+    display: flex; align-items: center; gap: 0.45rem;
+    padding: 0.55rem 1.1rem; border-radius: 30px;
+    border: 1.5px solid var(--border);
+    background: white; cursor: pointer;
+    font-size: 0.88rem; font-weight: 500;
+    color: var(--muted); transition: all 0.2s;
+  }
+  .tab .icon { font-size: 1rem; }
+  .tab:hover { border-color: var(--green); color: var(--green); }
+  .tab.active {
+    background: var(--green); color: white;
+    border-color: var(--green);
+  }
+
+  /* ── MENU GRID ── */
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+  .menu-card {
+    background: white; border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .menu-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .card-img {
+    width: 100%; height: 160px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+    position: relative;
+  }
+  .card-img.green-bg { background: var(--green-pale); }
+  .card-img.gold-bg { background: var(--gold-pale); }
+  .card-img.orange-bg { background: #fff4eb; }
+  .badge-veg, .badge-nonveg {
+    position: absolute; top: 10px; right: 10px;
+    font-size: 0.65rem; font-weight: 700;
+    padding: 0.2rem 0.55rem; border-radius: 4px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .badge-veg { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+  .badge-nonveg { background: #fce4ec; color: #c62828; border: 1px solid #ef9a9a; }
+  .card-body { padding: 1rem 1.1rem 1.2rem; }
+  .card-body h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
+  .card-body p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.75rem; }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; }
+  .price { font-size: 1.05rem; font-weight: 700; color: var(--green); }
+  .add-btn {
+    background: var(--green); color: white;
+    border: none; border-radius: 8px;
+    padding: 0.4rem 0.9rem; font-size: 0.82rem;
+    font-weight: 600; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .add-btn:hover { background: var(--green-light); }
+  .add-btn.in-cart { background: var(--gold); }
+
+  /* ── DELIVERY SECTION ── */
+  .delivery-section {
+    background: white; border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 2rem;
+    max-width: 1100px; margin: 0 auto 2.5rem;
+    margin-left: 1.5rem; margin-right: 1.5rem;
+  }
+  .delivery-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; color: var(--green); margin-bottom: 0.3rem;
+  }
+  .delivery-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; }
+  .delivery-opts { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .del-opt {
+    flex: 1; min-width: 200px;
+    border: 2px solid var(--border);
+    border-radius: 12px; padding: 1.1rem 1.2rem;
+    cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: flex-start; gap: 0.75rem;
+  }
+  .del-opt:hover { border-color: var(--green); }
+  .del-opt.selected { border-color: var(--green); background: var(--green-pale); }
+  .del-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .del-info h4 { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+  .del-info p { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+  .delivery-form { display: grid; gap: 0.85rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+  .form-group label { font-size: 0.8rem; font-weight: 500; color: var(--muted); }
+  .form-group input, .form-group textarea, .form-group select {
+    padding: 0.6rem 0.85rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px; font-size: 0.88rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text); background: white;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: var(--green);
+  }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .submit-order {
+    background: var(--green); color: white;
+    border: none; border-radius: 10px;
+    padding: 0.85rem 2rem; font-size: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: flex; align-items: center; gap: 0.5rem;
+    justify-content: center;
+  }
+  .submit-order:hover { background: #1e4d14; transform: translateY(-1px); }
+
+  /* ── CART ── */
+  .cart-bar {
+    position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+    background: var(--dark);
+    color: white; border-radius: 50px;
+    padding: 0.85rem 1.75rem;
+    display: flex; align-items: center; gap: 1rem;
+    font-size: 0.9rem; font-weight: 500;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    z-index: 200; min-width: 260px;
+    justify-content: space-between;
+    transition: opacity 0.3s, transform 0.3s;
+    opacity: 0; pointer-events: none;
+  }
+  .cart-bar.visible { opacity: 1; pointer-events: all; }
+  .cart-count {
+    background: var(--gold); color: white;
+    border-radius: 50%; width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.78rem; font-weight: 700;
+  }
+  .cart-total { font-size: 1rem; font-weight: 700; color: var(--gold-light); }
+  .cart-cta {
+    background: var(--green); color: white;
+    border: none; border-radius: 30px;
+    padding: 0.45rem 1.1rem; font-size: 0.82rem;
+    font-weight: 600; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* ── INFO BAR ── */
+  .info-strip {
+    background: var(--green);
+    color: rgba(255,255,255,0.9);
+    text-align: center;
+    padding: 0.55rem 1rem;
+    font-size: 0.78rem;
+    display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+  }
+  .info-strip a { color: var(--gold-light); text-decoration: none; }
+  .info-strip span { opacity: 0.6; }
+
+  /* ── MAP LINK ── */
+  .map-link-card {
+    background: var(--green-pale);
+    border: 1px solid rgba(45,106,31,0.2);
+    border-radius: 12px; padding: 1.1rem 1.25rem;
+    display: flex; align-items: center; gap: 0.9rem;
+    text-decoration: none; color: var(--text);
+    transition: background 0.2s;
+  }
+  .map-link-card:hover { background: #d4ecca; }
+  .map-link-card .map-pin { font-size: 1.8rem; }
+  .map-link-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--green); }
+  .map-link-card p { font-size: 0.8rem; color: var(--muted); }
+  .map-arrow { margin-left: auto; color: var(--green); font-size: 1.2rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark); color: rgba(255,255,255,0.7);
+    padding: 2rem 1.5rem 1rem;
+    text-align: center; margin-top: 2rem;
+  }
+  footer .f-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; color: var(--gold-light);
+    margin-bottom: 0.5rem;
+  }
+  footer p { font-size: 0.78rem; line-height: 1.8; }
+  footer a { color: var(--gold-light); text-decoration: none; }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed; top: 80px; right: 1rem;
+    background: var(--green); color: white;
+    padding: 0.7rem 1.2rem; border-radius: 10px;
+    font-size: 0.88rem; font-weight: 500;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    z-index: 300; opacity: 0; transform: translateX(20px);
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateX(0); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 400; display: none;
+    align-items: center; justify-content: center;
+    padding: 1rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: white; border-radius: 16px;
+    width: 100%; max-width: 460px;
+    padding: 1.75rem;
+    max-height: 90vh; overflow-y: auto;
+  }
+  .modal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.25rem;
+  }
+  .modal-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--green);
+  }
+  .close-btn {
+    background: none; border: none; font-size: 1.3rem;
+    cursor: pointer; color: var(--muted); padding: 0.2rem;
+  }
+  .cart-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+  .cart-item-name { font-weight: 500; color: var(--text); }
+  .cart-item-price { color: var(--green); font-weight: 600; }
+  .cart-item-ctrl { display: flex; align-items: center; gap: 0.5rem; }
+  .qty-btn {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 1.5px solid var(--border); background: white;
+    cursor: pointer; font-size: 1rem; color: var(--text);
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1;
+  }
+  .qty-btn:hover { background: var(--green-pale); border-color: var(--green); }
+  .cart-total-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.9rem 0 0;
+    font-weight: 700; font-size: 1rem;
+    color: var(--text);
+  }
+
+  /* responsive */
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+    nav { display: none; }
+    .hero { padding: 2rem 1rem 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="info-strip">
+  <span>📞 9166 4324 / 8206 2166</span>
+  <a href="https://maps.app.goo.gl/555CxPJgTtwX6KqQA" target="_blank">📍 3, Sakra Road, #01-05, Singapore 627878</a>
+  <span>⏰ Open Daily: 7 AM – 10 PM</span>
+</div>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-area">
+      <img src="/mnt/user-data/uploads/1776664906713_image.png" alt="Al Sheika Logo" class="logo-img" onerror="this.style.display='none'" />
+      <div class="brand-text">
+        <h1>Al Sheika Banana Leaf</h1>
+        <p>Authentic South Indian Cuisine · Singapore</p>
+      </div>
+    </div>
+    <nav>
+      <a href="#menu" class="active" onclick="scrollTo('menu',this)">Menu</a>
+      <a href="#delivery" onclick="scrollTo('delivery',this)">Order</a>
+      <a href="#contact" onclick="scrollTo('contact',this)">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <span class="hero-tag">🍃 Authentic Banana Leaf Experience</span>
+  <h2>Real Flavours,<br/><span>Real Heritage</span></h2>
+  <p>From morning tiffin to hearty biryani — every meal crafted with love and tradition.</p>
+  <div class="hero-btns">
+    <a href="#menu" class="btn-primary">Browse Menu</a>
+    <a href="#delivery" class="btn-outline">Order Delivery</a>
+  </div>
+</div>
+
+<!-- MENU -->
+<section id="menu">
+  <h2 class="section-title">Our Menu</h2>
+  <p class="section-sub">Choose your meal time and explore our delicious offerings</p>
+
+  <div class="tabs">
+    <button class="tab active" onclick="filterMenu('morning', this)">
+      <span class="icon">🌅</span> Morning Tiffin
+    </button>
+    <button class="tab" onclick="filterMenu('afternoon', this)">
+      <span class="icon">☀️</span> Afternoon Lunch
+    </button>
+    <button class="tab" onclick="filterMenu('night', this)">
+      <span class="icon">🌙</span> Night Dinner
+    </button>
+  </div>
+
+  <div class="menu-grid" id="menuGrid"></div>
+</section>
+
+<!-- DELIVERY -->
+<div class="delivery-section" id="delivery">
+  <h2 class="delivery-title">🛵 Special Delivery Request</h2>
+  <p class="delivery-sub">We deliver to your home or workplace across Singapore</p>
+
+  <div class="delivery-opts">
+    <div class="del-opt selected" id="opt-home" onclick="selectDelivery('home')">
+      <span class="del-icon">🏠</span>
+      <div class="del-info">
+        <h4>Home Delivery</h4>
+        <p>Delivered fresh to your doorstep</p>
+      </div>
+    </div>
+    <div class="del-opt" id="opt-work" onclick="selectDelivery('work')">
+      <span class="del-icon">🏢</span>
+      <div class="del-info">
+        <h4>Workplace Delivery</h4>
+        <p>Office or industrial location delivery</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="delivery-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="cust-name" placeholder="Your name" />
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="cust-phone" placeholder="+65 9XXX XXXX" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label id="addr-label">Delivery Address</label>
+      <textarea id="cust-address" placeholder="Block / Street / Unit number..."></textarea>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Preferred Time</label>
+        <input type="time" id="cust-time" />
+      </div>
+      <div class="form-group">
+        <label>Special Instructions</label>
+        <input type="text" id="cust-notes" placeholder="Less spicy, extra gravy…" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Selected Items</label>
+      <div id="order-summary" style="font-size:0.82rem; color:var(--muted); padding:0.4rem 0;">
+        No items in cart. Browse the menu above to add items.
+      </div>
+    </div>
+    <button class="submit-order" onclick="submitOrder()">
+      🛵 Place Delivery Order
+    </button>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="section-title">Find Us</h2>
+  <p class="section-sub">Visit us or get in touch — we're happy to serve you</p>
+
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:1rem;">
+    <a href="https://maps.app.goo.gl/555CxPJgTtwX6KqQA" target="_blank" class="map-link-card">
+      <span class="map-pin">📍</span>
+      <div>
+        <h4>Get Directions on Google Maps</h4>
+        <p>3, Sakra Road, #01-05 (Stall No.9 &amp; 10)<br/>Singapore 627878</p>
+      </div>
+      <span class="map-arrow">→</span>
+    </a>
+    <div style="background:white; border-radius:12px; border:1px solid var(--border); padding:1.1rem 1.25rem;">
+      <h4 style="font-size:0.95rem; font-weight:600; margin-bottom:0.5rem; color:var(--green)">📞 Call &amp; WhatsApp</h4>
+      <p style="font-size:0.88rem; color:var(--muted); line-height:2">
+        <a href="tel:+6591664324" style="color:var(--text); font-weight:500">9166 4324</a><br/>
+        <a href="tel:+6582062166" style="color:var(--text); font-weight:500">8206 2166</a>
+      </p>
+    </div>
+    <div style="background:white; border-radius:12px; border:1px solid var(--border); padding:1.1rem 1.25rem;">
+      <h4 style="font-size:0.95rem; font-weight:600; margin-bottom:0.5rem; color:var(--green)">🕐 Opening Hours</h4>
+      <p style="font-size:0.82rem; color:var(--muted); line-height:2">
+        Monday – Sunday<br/>
+        <strong style="color:var(--text)">7:00 AM – 10:00 PM</strong><br/>
+        <span style="font-size:0.75rem;">Breakfast from 7 AM · Lunch from 11 AM · Dinner from 6 PM</span>
+      </p>
+    </div>
+    <div style="background:white; border-radius:12px; border:1px solid var(--border); padding:1.1rem 1.25rem;">
+      <h4 style="font-size:0.95rem; font-weight:600; margin-bottom:0.5rem; color:var(--green)">🏷️ UEN</h4>
+      <p style="font-size:0.88rem; color:var(--muted); line-height:2">
+        201729571E<br/>
+        <span style="font-size:0.75rem;">Registered business in Singapore</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">Al Sheika Banana Leaf Restaurant Pte Ltd</div>
+  <p>
+    3, Sakra Road, #01-05 (Stall No.9 &amp; 10), Singapore 627878<br/>
+    📞 <a href="tel:+6591664324">9166 4324</a> / <a href="tel:+6582062166">8206 2166</a><br/>
+    <a href="https://maps.app.goo.gl/555CxPJgTtwX6KqQA" target="_blank">View on Google Maps →</a>
+  </p>
+  <p style="margin-top:1rem; font-size:0.7rem; opacity:0.4">© 2025 Al Sheika Banana Leaf Restaurant Pte Ltd</p>
+</footer>
+
+<!-- Cart Bar -->
+<div class="cart-bar" id="cartBar">
+  <span>🛒 Cart <span class="cart-count" id="cartCount">0</span></span>
+  <span class="cart-total" id="cartTotalBar">S$0.00</span>
+  <button class="cart-cta" onclick="openCartModal()">Review →</button>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">Item added!</div>
+
+<!-- Cart Modal -->
+<div class="modal-overlay" id="cartModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Your Order 🛒</h3>
+      <button class="close-btn" onclick="closeCartModal()">✕</button>
+    </div>
+    <div id="cartItems"></div>
+    <div class="cart-total-row">
+      <span>Total</span>
+      <span id="cartTotalModal">S$0.00</span>
+    </div>
+    <button class="submit-order" style="margin-top:1rem; width:100%;" onclick="closeCartModal(); document.getElementById('delivery').scrollIntoView({behavior:'smooth'})">
+      Proceed to Order Form →
+    </button>
+  </div>
+</div>
+
+<script>
+const menuData = {
+  morning: [
+    { id:1, name:'Idli Sambar', desc:'Soft steamed rice cakes with tangy sambar and chutneys', price:3.50, emoji:'🫓', bg:'green-bg', veg:true },
+    { id:2, name:'Puri Masala', desc:'Fluffy deep-fried bread with spiced potato masala', price:4.00, emoji:'🫓', bg:'gold-bg', veg:true },
+    { id:3, name:'Dosa (Plain)', desc:'Crispy golden rice crepe served with sambar & chutney', price:3.50, emoji:'🥙', bg:'orange-bg', veg:true },
+    { id:4, name:'Masala Dosa', desc:'Crispy crepe stuffed with spiced potato filling', price:4.50, emoji:'🥙', bg:'gold-bg', veg:true },
+    { id:5, name:'Vada Sambar', desc:'Crispy lentil fritters dunked in hot sambar', price:3.50, emoji:'🍩', bg:'green-bg', veg:true },
+    { id:6, name:'Upma', desc:'Savoury semolina porridge with mustard seeds & veggies', price:3.00, emoji:'🍚', bg:'orange-bg', veg:true },
+  ],
+  afternoon: [
+    { id:7, name:'Chicken Briyani', desc:'Fragrant basmati rice layered with spiced chicken pieces', price:8.50, emoji:'🍛', bg:'gold-bg', veg:false },
+    { id:8, name:'Mutton Briyani', desc:'Rich slow-cooked mutton with aromatic basmati', price:10.00, emoji:'🍛', bg:'orange-bg', veg:false },
+    { id:9, name:'Veg Briyani', desc:'Fragrant mixed vegetable briyani with raita', price:7.00, emoji:'🍛', bg:'green-bg', veg:true },
+    { id:10, name:'Banana Leaf Meals', desc:'Complete South Indian meal on banana leaf with rice, curries, sides', price:9.00, emoji:'🍽️', bg:'green-bg', veg:true },
+    { id:11, name:'Chicken Curry', desc:'Tender chicken in bold South Indian spiced gravy', price:7.50, emoji:'🍲', bg:'orange-bg', veg:false },
+    { id:12, name:'Mutton Curry', desc:'Slow-cooked mutton in rich masala gravy', price:9.50, emoji:'🍲', bg:'gold-bg', veg:false },
+  ],
+  night: [
+    { id:13, name:'Chicken Briyani (Night)', desc:'Evening special — extra generous portions for dinner', price:9.00, emoji:'🍛', bg:'gold-bg', veg:false },
+    { id:14, name:'Mutton Briyani (Night)', desc:'Richly flavoured mutton briyani — dinner favourite', price:11.00, emoji:'🍛', bg:'orange-bg', veg:false },
+    { id:15, name:'Family Meals Plate', desc:'Full banana leaf spread — rice, 3 curries, appalam, dessert', price:12.00, emoji:'🍽️', bg:'green-bg', veg:true },
+    { id:16, name:'Tandoori Chicken', desc:'Oven-roasted marinated chicken with mint chutney', price:10.00, emoji:'🍗', bg:'orange-bg', veg:false },
+    { id:17, name:'Paneer Butter Masala', desc:'Creamy tomato-butter sauce with soft paneer cubes', price:8.00, emoji:'🧀', bg:'gold-bg', veg:true },
+    { id:18, name:'Prawn Masala', desc:'Fresh prawns in coastal South Indian spice blend', price:13.00, emoji:'🦐', bg:'orange-bg', veg:false },
+  ]
+};
+
+let cart = {};
+let currentTab = 'morning';
+
+function renderMenu(tab) {
+  currentTab = tab;
+  const grid = document.getElementById('menuGrid');
+  grid.innerHTML = menuData[tab].map(item => `
+    <div class="menu-card">
+      <div class="card-img ${item.bg}">
+        <span style="font-size:3.5rem">${item.emoji}</span>
+        <span class="${item.veg ? 'badge-veg' : 'badge-nonveg'}">${item.veg ? '🟢 Veg' : '🔴 Non-Veg'}</span>
+      </div>
+      <div class="card-body">
+        <h3>${item.name}</h3>
+        <p>${item.desc}</p>
+        <div class="card-footer">
+          <span class="price">S$${item.price.toFixed(2)}</span>
+          <button class="add-btn ${cart[item.id] ? 'in-cart' : ''}" id="btn-${item.id}" onclick="addToCart(${item.id})">
+            ${cart[item.id] ? '✓ Added ('+cart[item.id].qty+')' : '+ Add'}
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterMenu(tab, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderMenu(tab);
+}
+
+function getAllItems() {
+  return [...menuData.morning, ...menuData.afternoon, ...menuData.night];
+}
+
+function addToCart(id) {
+  const item = getAllItems().find(i => i.id === id);
+  if (!item) return;
+  if (cart[id]) { cart[id].qty++; }
+  else { cart[id] = { ...item, qty: 1 }; }
+  updateCartUI();
+  showToast(`${item.name} added!`);
+  const btn = document.getElementById('btn-' + id);
+  if (btn) {
+    btn.classList.add('in-cart');
+    btn.textContent = '✓ Added (' + cart[id].qty + ')';
+  }
+  updateOrderSummary();
+}
+
+function changeQty(id, delta) {
+  if (!cart[id]) return;
+  cart[id].qty += delta;
+  if (cart[id].qty <= 0) delete cart[id];
+  updateCartUI();
+  renderCartItems();
+  updateOrderSummary();
+  // refresh menu card button if visible
+  const btn = document.getElementById('btn-' + id);
+  if (btn) {
+    if (cart[id]) {
+      btn.classList.add('in-cart');
+      btn.textContent = '✓ Added (' + cart[id].qty + ')';
+    } else {
+      btn.classList.remove('in-cart');
+      btn.textContent = '+ Add';
+    }
+  }
+}
+
+function updateCartUI() {
+  const items = Object.values(cart);
+  const count = items.reduce((s, i) => s + i.qty, 0);
+  const total = items.reduce((s, i) => s + i.price * i.qty, 0);
+  document.getElementById('cartCount').textContent = count;
+  document.getElementById('cartTotalBar').textContent = 'S$' + total.toFixed(2);
+  document.getElementById('cartTotalModal').textContent = 'S$' + total.toFixed(2);
+  const bar = document.getElementById('cartBar');
+  count > 0 ? bar.classList.add('visible') : bar.classList.remove('visible');
+}
+
+function renderCartItems() {
+  const items = Object.values(cart);
+  const el = document.getElementById('cartItems');
+  if (!items.length) {
+    el.innerHTML = '<p style="font-size:0.85rem;color:var(--muted);padding:0.5rem 0">Your cart is empty.</p>';
+    return;
+  }
+  el.innerHTML = items.map(i => `
+    <div class="cart-item">
+      <span class="cart-item-name">${i.name}</span>
+      <div class="cart-item-ctrl">
+        <button class="qty-btn" onclick="changeQty(${i.id},-1)">−</button>
+        <span style="font-size:0.88rem;font-weight:500;min-width:16px;text-align:center">${i.qty}</span>
+        <button class="qty-btn" onclick="changeQty(${i.id},1)">+</button>
+        <span class="cart-item-price">S$${(i.price*i.qty).toFixed(2)}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openCartModal() {
+  renderCartItems();
+  document.getElementById('cartModal').classList.add('open');
+}
+function closeCartModal() {
+  document.getElementById('cartModal').classList.remove('open');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function selectDelivery(type) {
+  document.getElementById('opt-home').classList.toggle('selected', type==='home');
+  document.getElementById('opt-work').classList.toggle('selected', type==='work');
+  document.getElementById('addr-label').textContent = type==='home' ? 'Home Address' : 'Workplace / Office Address';
+  document.getElementById('cust-address').placeholder = type==='home'
+    ? 'Block / Street / Unit / Postal Code...'
+    : 'Company name, Building, Floor / Unit, Postal Code...';
+}
+
+function updateOrderSummary() {
+  const items = Object.values(cart);
+  const el = document.getElementById('order-summary');
+  if (!items.length) {
+    el.textContent = 'No items in cart. Browse the menu above to add items.';
+    return;
+  }
+  const total = items.reduce((s,i) => s+i.price*i.qty, 0);
+  el.innerHTML = items.map(i => `<span style="display:inline-block;margin:0.2rem 0.4rem 0.2rem 0;background:var(--green-pale);color:var(--green);padding:0.2rem 0.6rem;border-radius:6px;font-size:0.78rem;font-weight:500">${i.name} x${i.qty}</span>`).join('') +
+    `<div style="margin-top:0.5rem;font-weight:600;color:var(--text)">Total: S$${total.toFixed(2)}</div>`;
+}
+
+function submitOrder() {
+  const name = document.getElementById('cust-name').value.trim();
+  const phone = document.getElementById('cust-phone').value.trim();
+  const addr = document.getElementById('cust-address').value.trim();
+  const items = Object.values(cart);
+  if (!name) { showToast('Please enter your name'); return; }
+  if (!phone) { showToast('Please enter your phone number'); return; }
+  if (!addr) { showToast('Please enter your delivery address'); return; }
+  if (!items.length) { showToast('Please add items to your cart'); return; }
+  const isWork = document.getElementById('opt-work').classList.contains('selected');
+  const total = items.reduce((s,i) => s+i.price*i.qty, 0);
+  const msg = `🛵 *New Delivery Order*\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n📍 *${isWork?'Workplace':'Home'} Address:* ${addr}\n\n🍽️ *Order:*\n${items.map(i=>`  • ${i.name} x${i.qty} — S$${(i.price*i.qty).toFixed(2)}`).join('\n')}\n\n💰 *Total: S$${total.toFixed(2)}*`;
+  const waNumber = '6591664324';
+  const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+  window.open(waUrl, '_blank');
+  showToast('Redirecting to WhatsApp…');
+}
+
+function scrollTo(id, el) {
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+// init
+renderMenu('morning');
+</script>
+</body>
+</html>
