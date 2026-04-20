@@ -389,7 +389,7 @@
 <body>
 
 <div class="info-strip">
-  <span>📞 9166 4324 / 8206 2166</span>
+  <span>📞 1234 5678 / 1234 5678</span>
   <a href="https://maps.app.goo.gl/555CxPJgTtwX6KqQA" target="_blank">📍 3, Sakra Road, #01-05, Singapore 627878</a>
   <span>⏰ Open Daily: 7 AM – 10 PM</span>
 </div>
@@ -517,8 +517,8 @@
     <div style="background:white; border-radius:12px; border:1px solid var(--border); padding:1.1rem 1.25rem;">
       <h4 style="font-size:0.95rem; font-weight:600; margin-bottom:0.5rem; color:var(--green)">📞 Call &amp; WhatsApp</h4>
       <p style="font-size:0.88rem; color:var(--muted); line-height:2">
-        <a href="tel:+6591664324" style="color:var(--text); font-weight:500">9166 4324</a><br/>
-        <a href="tel:+6582062166" style="color:var(--text); font-weight:500">8206 2166</a>
+        <a href="tel:+6512345678" style="color:var(--text); font-weight:500">1234 5678</a><br/>
+        <a href="tel:+6512345678" style="color:var(--text); font-weight:500">1234 5678</a>
       </p>
     </div>
     <div style="background:white; border-radius:12px; border:1px solid var(--border); padding:1.1rem 1.25rem;">
@@ -543,7 +543,7 @@
   <div class="f-logo">Al Sheika Banana Leaf Restaurant Pte Ltd</div>
   <p>
     3, Sakra Road, #01-05 (Stall No.9 &amp; 10), Singapore 627878<br/>
-    📞 <a href="tel:+6591664324">9166 4324</a> / <a href="tel:+6582062166">8206 2166</a><br/>
+    📞 <a href="tel:+6512345678">1234 5678</a> / <a href="tel:+6512345678">1234 5678</a><br/>
     <a href="https://maps.app.goo.gl/555CxPJgTtwX6KqQA" target="_blank">View on Google Maps →</a>
   </p>
   <p style="margin-top:1rem; font-size:0.7rem; opacity:0.4">© 2025 Al Sheika Banana Leaf Restaurant Pte Ltd</p>
@@ -755,7 +755,7 @@ function submitOrder() {
   const isWork = document.getElementById('opt-work').classList.contains('selected');
   const total = items.reduce((s,i) => s+i.price*i.qty, 0);
   const msg = `🛵 *New Delivery Order*\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n📍 *${isWork?'Workplace':'Home'} Address:* ${addr}\n\n🍽️ *Order:*\n${items.map(i=>`  • ${i.name} x${i.qty} — S$${(i.price*i.qty).toFixed(2)}`).join('\n')}\n\n💰 *Total: S$${total.toFixed(2)}*`;
-  const waNumber = '6591664324';
+  const waNumber = '6512345678';
   const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
   window.open(waUrl, '_blank');
   showToast('Redirecting to WhatsApp…');
